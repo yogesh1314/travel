@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+{% load staticfiles %}
+{% load material_form %}
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name = "viewport" content = "width=device-width, initial-scale = 1">
+	<title>Contact</title>
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+	{% include 'material/includes/material_css.html' %}
+</head>
+
+<body>
+	<style type="text/css">
+		.addcard{
+			padding: 2%;
+		}
+	</style>
+	<main>
+		<div class="container">
+			{% for i in blogs %}
+			<div class="card addcard">
+				<h5>{{ i.blog.title }}</h5>
+				<hr>
+				<p> {{ i.blog.creator_name }}</p>
+				<p> {{ i.blog.creator_contactno }}</p>
+				<p> {{ i.blog.description }}</p>
+				<br>
+				<p>Images</p>
+				<hr>
+					{% for j in i.images %}
+						<img class="materialboxed" width="200" src="{{ j.image.url }}">
+					{% endfor %}
+			</div>
+			{% endfor %}
+		</div>        
+	</main>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	{% include 'material/includes/material_js.html' %}
+</body>
+</html>

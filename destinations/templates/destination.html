@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>destination overview</title>
+</head>
+<body>	
+
+destination  : {{ destination }}
+<br>
+<br>
+destimages : {{ destimages }}
+<br><br>
+attractions : {{ attractions }}
+<br>
+<br>
+whentovisit  : {{ whentovisit }}
+<br>
+<br>
+itinerary  : {{ itinerary }}
+{% for i in itinerary %}
+<div>{{ i.description|safe }}</div>
+{% endfor %}
+<br>
+<br>
+waystoreach  : {{ waystoreach }}
+<br>
+<br>
+shoppingplaces  : {{ shoppingplaces }}
+<br>
+<br>
+things  : {{ things }}
+<br>
+<br>
+mustbuy  : {{ mustbuy }}
+<br>
+<br>
+musteat  : {{ musteat }}
+
+
+</body>
+</html>
