@@ -14,7 +14,8 @@ from django.conf import settings
 @require_http_methods(['GET', 'POST'])
 def home(request):
 	data = {}
-	data['images'] = HomeImages.objects.all()
+	images= HomeImages.objects.all()
+	data={"images":images, }
 	data['destination'] = Destination.objects.order_by('hotcount').reverse()[:6]
 	print(data)
 	return render(request, 'home.html',data)	

@@ -9,6 +9,18 @@ class HomeImages(models.Model):
 	def __str__(self):
 		return str(self.image)
 
+
+def destphotoname(instance,filename):
+	ext = filename.split('.')[-1]
+	name = filename.split('.')[0]
+	return str('destination/'+instance.destination.title+'/images/'+name+'.'+ext)
+
+def destphotoname2(instance,filename):
+	ext = filename.split('.')[-1]
+	name = filename.split('.')[0]
+	return str('destination/'+instance.title+'/images/'+name+'.'+ext)
+
+
 class Destination(models.Model):	
 	title = models.CharField(unique = True, max_length=30)
 	overview = models.CharField(max_length=1000)
@@ -16,13 +28,9 @@ class Destination(models.Model):
 	lon = models.FloatField(blank=True, null=True)
 	indian = models.BooleanField(default = True)
 	hotcount = models.IntegerField(default = 0)
+	image = models.ImageField(upload_to=destphotoname2)
 	def __str__(self):
 		return "%s" %(self.title)
-
-def destphotoname(instance,filename):
-	ext = filename.split('.')[-1]
-	name = filename.split('.')[0]
-	return str('destination/'+instance.destination.title+'/images/'+name+'.'+ext)
 
 class DestinationImages(models.Model):
     destination = models.ForeignKey(Destination)
@@ -33,12 +41,12 @@ class DestinationImages(models.Model):
 def things_photo_name(instance, filename):
 	ext = filename.split('.')[-1]
 	name = filename.split('.')[0]
-	return 'destination/'+instance.destination.title+'/things/'+name+'.'+ext
+	return 'destination/things/'+instance.title+name+'.'+ext
 
 class Things(models.Model):
 	destination = models.ForeignKey(Destination)
 	title = models.CharField(max_length = 50)
-	description = models.CharField(max_length = 1000)
+	description = models.CharField(max_length = 500)
 	photo = models.ImageField(upload_to = things_photo_name)
 	def __str__(self):
 		return "%s %s" %(self.destination.title, self.title)
@@ -64,7 +72,7 @@ def attrphotoname(instance,filename):
 class Attractions(models.Model):
 	destination = models.ForeignKey(Destination)
 	title = models.CharField(unique = True, max_length = 50)
-	description = models.CharField(max_length = 1000)
+	description = models.CharField(max_length = 700)
 	photo = models.ImageField(upload_to = attrphotoname)
 	def __str__(self):
 		return "%s %s" %(self.destination, self.title)
@@ -77,7 +85,7 @@ def musteatphotoname(instance,filename):
 class MustEat(models.Model):
 	destination = models.ForeignKey(Destination)
 	title = models.CharField(unique = True, max_length = 50)
-	address = models.CharField(max_length = 1000)
+	address = models.CharField(max_length = 500)
 	price_for_two = models.CharField(max_length = 30)
 	photo = models.ImageField(upload_to = musteatphotoname)
 	def __str__(self):
@@ -103,7 +111,7 @@ def shoppingplacesphotoname(instance,filename):
 class ShoppingPlaces(models.Model):
 	destination = models.ForeignKey(Destination)
 	title = models.CharField(unique = True, max_length = 50)
-	description = models.CharField(max_length = 1000)
+	description = models.CharField(max_length = 700)
 	photo = models.ImageField(upload_to = shoppingplacesphotoname)
 	def __str__(self):
 		return "%s %s" %(self.destination, self.title)
@@ -133,7 +141,7 @@ class Restaurants(models.Model):
 # render as html only.
 class Itinerary(models.Model):
 	destination = models.ForeignKey(Destination)
-	description = models.CharField(max_length = 1500)
+	description = models.CharField(max_length = 2500)
 	def __str__(self):
 		return "%s %s" %(self.destination.title, self.description)
 
