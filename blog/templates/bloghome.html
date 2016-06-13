@@ -1,24 +1,19 @@
-<!doctype html>
-<html lang="en">
+{% extends 'base/base.html' %}
 {% load staticfiles %}
-{% load material_form %}
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name = "viewport" content = "width=device-width, initial-scale = 1">
-	<title>Contact</title>
-	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-	{% include 'material/includes/material_css.html' %}
-</head>
 
-<body>
-	<style type="text/css">
-		.addcard{
-			padding: 2%;
-		}
-	</style>
-	<main>
-		<div class="container">
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'destinations/css/destination.css' %}" type = 	"text/css"/>
+<link href='https://fonts.googleapis.com/css?family=Titillium+Web:900' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Courgette' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:900italic' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Alegreya+Sans:900' rel='stylesheet' type='text/css'>
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<a class="btn pink" href="{% url 'blog-add' %}">Add Your Blog</a>
+		{% if blogs %}
 			{% for i in blogs %}
 			<div class="card addcard">
 				<h5>{{ i.blog.title }}</h5>
@@ -34,9 +29,14 @@
 					{% endfor %}
 			</div>
 			{% endfor %}
-		</div>        
-	</main>
-	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-	{% include 'material/includes/material_js.html' %}
-</body>
-</html>
+		{% else %}
+		<p>No Blogs Right Now</p>
+		{% endif %}
+	</div>        
+{% endblock %}
+{% block scripts %}
+	<script>
+		$(".button-collapse").sideNav(); 
+		$('.slider').slider({full_width: true, height: 400,interval:3000});
+	</script>
+{% endblock %}

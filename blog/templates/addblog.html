@@ -1,50 +1,30 @@
-<!doctype html>
-<html lang="en">
+{% extends 'base/base.html' %}
 {% load staticfiles %}
 {% load material_form %}
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name = "viewport" content = "width=device-width, initial-scale = 1">
-	<title>Contact</title>
-	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-	{% include 'material/includes/material_css.html' %}
-</head>
-
-<body>
-<style type="text/css">
-	.addcard{
-		padding: 2%;
-	}
-</style>
-	<main>
-		<div class="container">
-		<div class="card addcard">
-			<h5>Add Blog</h5>
-			<hr>
-			<form method="post" action="{% url 'blog-add' %}" enctype="multipart/form-data">
-				{% csrf_token %}
-				{% form %}
-				{% part form.images %}
-				<div class="row">
-					<div class="input-field file-field col s12" id="id_images_container">
-						<div class="btn">
-						<span>Images</span>
-							<input type="file" name="images" multiple="multiple" multiple/>
-						</div>
-						<div class="file-path-wrapper">
-							<input class="file-path" id="id_images" placeholder="Images" type="text" multiple="multiple" multiple/>
-						</div>  
+{% block content %}
+	<div class="container">
+	<div class="card addcard">
+		<h5>Add Blog</h5>
+		<hr>
+		<form method="post" action="{% url 'blog-add' %}" enctype="multipart/form-data">
+			{% csrf_token %}
+			{% form %}
+			{% part form.images %}
+			<div class="row">
+				<div class="input-field file-field col s12" id="id_images_container">
+					<div class="btn">
+					<span>Images</span>
+						<input type="file" name="images" multiple="multiple" multiple/>
 					</div>
+					<div class="file-path-wrapper">
+						<input class="file-path" id="id_images" placeholder="Images" type="text" multiple="multiple" multiple/>
+					</div>  
 				</div>
-				{% endpart %}
-				{% endform %}
-						<button type="submit" name="add-blog" class="btn">Add Blog</button>
-			</form>
-		</div>
-		</div>        
-	</main>
-	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-	{% include 'material/includes/material_js.html' %}
-</body>
-</html>
+			</div>
+			{% endpart %}
+			{% endform %}
+					<button type="submit" name="add-blog" class="btn">Add Blog</button>
+		</form>
+	</div>
+	</div>
+{% endblock %}        

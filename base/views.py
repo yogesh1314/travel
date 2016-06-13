@@ -14,10 +14,24 @@ from django.conf import settings
 @require_http_methods(['GET', 'POST'])
 def home(request):
 	data = {}
-	data['images'] = HomeImages.objects.all()
+	images= HomeImages.objects.all()
+	data={"images":images, }
 	data['destination'] = Destination.objects.order_by('hotcount').reverse()[:6]
-	print(data)
+	#print(data)
 	return render(request, 'home.html',data)	
+@require_http_methods(['GET', 'POST'])
+def search(request):
+	data = {}
+	query = request.GET.get('search')
+	data['query'] = query
+	data['dest'] = Destination.objects.filter(title__icontains=query)
+	data['attr'] = Attractions.objects.filter(title__icontains=query)
+	data['musteat'] = MustEat.objects.filter(title__icontains=query)
+	data['mustbuy'] = MustBuy.objects.filter(title__icontains=query)
+	data['things'] = Things.objects.filter(title__icontains=query)
+	data['shop'] = ShoppingPlaces.objects.filter(title__icontains=query)
+	data['blog'] = Review.objects.filter(title__icontains=query)
+	return render(request, 'base/search.html',data)
 @require_http_methods(['GET', 'POST'])
 def contact(request):
 	data = {}

@@ -15,7 +15,7 @@ from django.conf import settings
 def bloghome(request):
 	data = {}
 	bloglist = []
-	blogs = Review.objects.filter(is_visible=False).order_by('created_on')
+	blogs = Review.objects.filter(is_visible=True).order_by('created_on')
 	for i in blogs:
 		b = {}
 		b['blog'] = i

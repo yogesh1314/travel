@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+{% load staticfiles %}
+{% load material_form %}
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name = "viewport" content = "width=device-width, initial-scale = 1">
+	<title>Contact</title>
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+	{% include 'material/includes/material_css.html' %}
+</head>
+
+<body>
+<style type="text/css">
+	.addcard{
+		padding: 2%;
+	}
+</style>
+	<main>
+		<div class="container">
+		<div class="card addcard">
+			
+		<h3>Contact Us</h3>
+		<hr>
+			<form method="post" action="">
+				{% csrf_token %}
+				{% form form=contactform %}
+				{% endform %}
+				<button class="btn" type="submit" name="submit">Submit</button>
+			</form>
+		</div>
+		</div>        
+	</main>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	{% include 'material/includes/material_js.html' %}
+</body>
+</html>
