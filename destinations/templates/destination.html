@@ -25,6 +25,14 @@ itinerary  : {{ itinerary }}
 waystoreach  : {{ waystoreach }}
 <br>
 <br>
+{% for w in waystoreach %}
+<hr>
+<p>{{ w.title }}</p>
+<p>{{ w.description }}</p>
+<p>{{ w.photo.url }}</p>
+<hr>
+{% endfor %}
+<br><br>
 shoppingplaces  : {{ shoppingplaces }}
 <br>
 <br>
