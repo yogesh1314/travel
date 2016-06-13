@@ -7,7 +7,7 @@
 {% block content %}
 	<div class="container">
 	<div class="card addcard">
-		<h5 class="search_text_font" style="text-align:center">Add Blog</h5>
+		<h5>Add Blog</h5>
 		<hr>
 		<form method="post" action="{% url 'blog-add' %}" enctype="multipart/form-data">
 			{% csrf_token %}

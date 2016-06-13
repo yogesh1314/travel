@@ -5,16 +5,27 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.views.decorators.http import require_http_methods, require_GET, require_POST
 from django.utils import timezone
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import render
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mass_mail
 from base.models import *
 #from .forms import *
 
-
 @require_http_methods(['GET', 'POST'])
 def base(request):
 	data = {}
-	data['destinations'] = Destination.objects.order_by('hotcount').reverse()[:10]
+	destination_list = Destination.objects.all()
+	paginator = Paginator(destination_list, 2)
+	# 2 means, 2 objects per page.
+	page = request.GET.get('page')
+	try:
+		dest = paginator.page(page)
+	except PageNotAnInteger:
+		dest = paginator.page(1)
+	except EmptyPage:
+		dest = paginator.page(paginator.num_pages)
+	data['destinations'] = dest
 	return render(request, 'desthome.html',data)	
 
 
@@ -36,6 +47,8 @@ def destination(request, pk):
 	data['whentovisit'] = WhenToVisit.objects.filter(destination = dest)
 	data['shoppingplaces'] = ShoppingPlaces.objects.filter(destination = dest)
 	data['itinerary'] = Itinerary.objects.filter(destination = dest)
+	dest.hotcount = dest.hotcount+1
+	dest.save()
 	return render(request, 'destination.html',data)
 
 def destination_attraction(request, pk):
@@ -170,7 +183,7 @@ def destination_whentovisit(request, pk):
 	data['whentovisit'] = WhenToVisit.objects.filter(destination = dest)
 	data['shoppingplaces'] = ShoppingPlaces.objects.filter(destination = dest)
 	data['itinerary'] = Itinerary.objects.filter(destination = dest)
-	print(whentovisit)
+	print(data)
 	return render(request, 'destination-whentovisit.html',data)
 
 def destination_itinerary(request, pk):

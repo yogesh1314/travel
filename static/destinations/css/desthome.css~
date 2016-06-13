@@ -1,6 +1,8 @@
 {% load staticfiles %}
 
-
+.addcard{
+	padding: 2%;
+}
 @media only screen 
 and (min-device-width : 700px)
 and (max-device-width: 1800px)  
@@ -32,11 +34,6 @@ margin-left: auto;
 }  
 }
 
-#destination_container
-{
-background: url("static/destinations/images/background.jpg");
-background-repeat: no-repeat;
-}
 
 #heading{
 font-family: 'Titillium Web', sans-serif;
@@ -58,7 +55,10 @@ margin-bottom:30px;
 }
 
 
-
+#destination_next_previous
+{
+padding-top:30px;
+}
 
 
 

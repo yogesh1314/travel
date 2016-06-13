@@ -10,8 +10,6 @@
 <link href='https://fonts.googleapis.com/css?family=Alegreya+Sans:900' rel='stylesheet' type='text/css'>
 {% endblock %}
 
-<title>{% block pagetitle %} Going Places | Blogs {% endblock %}</title>
-
 {% block content %}
 	<div class="container">
 		<a class="btn pink" href="{% url 'blog-add' %}">Add Your Blog</a>

@@ -16,7 +16,7 @@ from base.models import *
 def base(request):
 	data = {}
 	destination_list = Destination.objects.all()
-	paginator = Paginator(destination_list, 2)
+	paginator = Paginator(destination_list, 6)
 	# 2 means, 2 objects per page.
 	page = request.GET.get('page')
 	try:

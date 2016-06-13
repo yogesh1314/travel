@@ -29,7 +29,7 @@
       </li>
 	{% endfor %}
   	</ul>
-  </div>
+ </div>
 
 <!-- for mobile -->
 
@@ -537,8 +537,7 @@
 	</li>
 	{% endif %}
 	<li>
-      <div class="collapsible-header"><a href="{% url 'contact' %}"><i class="material-icons">contact_phone</i><span id="mobile_heading" class="black-text">Enquiry</span></a></div>
-	    
+      <div class="collapsible-header"><a href="{% url 'contact' %}" class="black-text"><i class="material-icons">contact_phone</i><span id="mobile_heading">Enquiry</span></a></div>
 	</li>
 
 
@@ -618,12 +617,12 @@
     <li>
       <div class="collapsible-header"><a href="{% url 'destination-itinerary' pk=destination.pk %}#centre" id="mobile_heading"><i class="material-icons">assignment</i>Packages available</a></div>
     </li>
-
+	{% endif %}
 	<li>
       <div class="collapsible-header"><a href="{% url 'contact' %}" ><i class="material-icons">contact_phone</i><span id="mobile_heading">Enquiry</span></a></div>
 	    
 	</li>
-	{% endif %}
+	
 
 
   </ul>
