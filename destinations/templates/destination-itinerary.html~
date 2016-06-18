@@ -15,7 +15,7 @@
 				<h5 class="search_text_font" style="text-align:center">{{ i.destination }}</h5>
 				<hr>
 				
-				<p> {{ i.description | safe }}</p>
+				<p> {{ i.description }}</p>
 			
 				
 				<hr>

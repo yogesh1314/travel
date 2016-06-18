@@ -3,27 +3,30 @@
 
 {% block extrahead %}
 <link rel="stylesheet" href="{% static 'destinations/css/destination.css' %}" type = 	"text/css"/>
+<link rel="stylesheet" href="{% static 'blog/css/bloghome.css' %}" type = 	"text/css"/>
 <link href='https://fonts.googleapis.com/css?family=Titillium+Web:900' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Courgette' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:900italic' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Alegreya+Sans:900' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Ubuntu:400italic,500' rel='stylesheet' type='text/css'>
 {% endblock %}
 
-<title>{% block pagetitle %} Going Places | Blogs {% endblock %}</title>
+<title>{% block pagetitle %} Travel Log | Blogs {% endblock %}</title>
 
 {% block content %}
-	<div class="container">
-		<a class="btn pink" href="{% url 'blog-add' %}">Add Your Blog</a>
+	<div class="container" style="text-align:center" id="blog_button">
+		<a id="blog_button" class="btn pink" href="{% url 'blog-add' %}">Add Your Blog</a>
 		{% if blogs %}
 			<div class="row">
 			{% for i in blogs %}
-			<div class="card addcard col s12 m6 l6">
+			<div id="blog_card" class="card addcard col s12 m5 l5 offset-l1 offset-m1">
 				<h5 class="search_text_font" style="text-align:center">{{ i.blog.title }}</h5>
 				<hr>
-				<p>Name : {{ i.blog.creator_name }}</p>
+				<p><span>Name :</span> {{ i.blog.creator_name }}</p>
 				<p> {{ i.blog.creator_contactno }}</p>
-				<p>Rating : {{ i.blog.creator_rating }}</p>
+				<p><span>Rating :</span> {{ i.blog.creator_rating }}</p>
 				<p> {{ i.blog.description }}</p>
 			
 				
@@ -31,8 +34,9 @@
 										
 					{% for j in i.images %}
 					
-						<img class="materialboxed" width="200" src="{{ j.image.url }}">
-								
+					<div id="over" style="content-align:center">						
+					<img class="materialboxed" width="230" height="200" src="{{ j.image.url }}">
+					</div>			
 					{% endfor %}
 		
 			</div>

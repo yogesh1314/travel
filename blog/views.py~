@@ -23,7 +23,7 @@ def bloghome(request):
 		bloglist.append(b)
 	data['blogs'] = bloglist
 	print(data)
-	return render(request, 'bloghome.html',data)
+	return render(request, 'blog.html',data)
 
 @require_http_methods(['GET', 'POST'])
 def addblog(request):

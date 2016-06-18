@@ -9,7 +9,7 @@
 	{% for p in things %}
         <div class="col s12 m10 l5 offset-l1">
           <div  class="card white z-depth-1">
-            <div id="attraction_card_div" class="card-content black-text" id="center_div" style="text-align:center">
+            <div id="things_card_div" class="card-content black-text" id="center_div" style="text-align:center">
               <span class="card-title grey-text text-darken-2" id="heading">{{p.title}}</span>
 		<div id="attraction_image_div">
 		<img  id="attraction_image" class="materialboxed" data-caption="{{p.title }}" src="{{p.photo.url}}" height=100% width=100%>

@@ -39,7 +39,7 @@
 	<span class="step-links">
 		<span class="current search_text_font" style="text-align:center">
 		{% if destinations.has_previous %}
-		<a id="destination_next_previous" href="?page={{ destinations.previous_page_number }}"><i class="material-icons medium">chevron_left</i></a>
+		<a id="destination_next_previous" href="?page={{ destinations.previous_page_number }}"><i class="material-icons small">chevron_left</i></a>
 		{% endif %}
 		
 			Page {{ destinations.number }} of {{ destinations.paginator.num_pages }}.

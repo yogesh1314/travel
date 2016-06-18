@@ -10,7 +10,7 @@
 <link href='https://fonts.googleapis.com/css?family=Alegreya+Sans:900' rel='stylesheet' type='text/css'>
 {% endblock %}
 
-
+{% block pagetitle %} Travel Log | {{destination.title }} {% endblock %}
 
 {% block content %}
 
