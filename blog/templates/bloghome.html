@@ -17,6 +17,12 @@
 
 {% block content %}
 	<div class="container" style="text-align:center" id="blog_button">
+	    {% if message %}
+		<div class="chip">
+		    {{ message }} <i class="material-icons">close</i>
+		  </div>
+		{% endif %}
+		<br><br>
 		<a id="blog_button" class="btn pink" href="{% url 'blog-add' %}">Add Your Blog</a>
 		{% if blogs %}
 			<div class="row">
@@ -28,28 +34,28 @@
 				<p> {{ i.blog.creator_contactno }}</p>
 				<p><span>Rating :</span> {{ i.blog.creator_rating }}</p>
 				<p> {{ i.blog.description }}</p>
-			
-				
+
+
 				<hr>
-										
+
 					{% for j in i.images %}
-					
-					<div id="over" style="content-align:center">						
+
+					<div id="over" style="content-align:center">
 					<img class="materialboxed" width="230" height="200" src="{{ j.image.url }}">
-					</div>			
+					</div>
 					{% endfor %}
-		
+
 			</div>
 			{% endfor %}
 			</div>
 		{% else %}
 		<p>No Blogs Right Now</p>
 		{% endif %}
-	</div>        
+	</div>
 {% endblock %}
 {% block scripts %}
 	<script>
-		$(".button-collapse").sideNav(); 
+		$(".button-collapse").sideNav();
 		$('.slider').slider({full_width: true, height: 400,interval:3000});
 	</script>
 {% endblock %}

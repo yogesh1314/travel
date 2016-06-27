@@ -18,7 +18,7 @@ def home(request):
 	data={"images":images, }
 	data['destination'] = Destination.objects.order_by('hotcount').reverse()[:6]
 	#print(data)
-	return render(request, 'home.html',data)	
+	return render(request, 'home.html',data)
 @require_http_methods(['GET', 'POST'])
 def search(request):
 	data = {}
@@ -41,7 +41,7 @@ def contact(request):
 		form = ContactForm(request.POST)
 		if form.is_valid():
 			subject = 'New Query in Travel Website'
-			to = 'admin@travelsite.com'
+			to = 'travellog101@gmail.com'
 			body = 'Hello Admin, \n\nThere is new query in your travel website, as follows:\n\nName: '+str(form.cleaned_data.get('name'))+'\nEmail: '+str(form.cleaned_data.get('email'))+'\nContact Number: '+str(form.cleaned_data.get('contactno'))+'\nAbout: '+str(form.cleaned_data.get('about'))+'\nDescription: '+str(form.cleaned_data.get('description'))+'\n\nDo take appropriate action.\nThank You.'
 			print (subject)
 			print(body)
@@ -49,5 +49,6 @@ def contact(request):
 				send_mail(subject, body, settings.EMAIL_HOST_USER, [to,], fail_silently=False)
 			except:
 				pass
+			return render(request, 'contact_redirect.html',data)
 	data['contactform'] = form
-	return render(request, 'contact.html',data)	
+	return render(request, 'contact.html',data)
