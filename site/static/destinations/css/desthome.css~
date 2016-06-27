@@ -1,0 +1,64 @@
+{% load staticfiles %}
+
+.addcard{
+	padding: 2%;
+}
+@media only screen 
+and (min-device-width : 700px)
+and (max-device-width: 1800px)  
+{
+ 
+#voyages_pic_div
+{
+height:220px ;
+width: 220px ;
+margin-left: auto;
+margin-right: auto;
+margin-top:10px;
+	}
+
+
+
+}
+
+@media only screen
+and (min-device-width : 200px) 
+and (max-width : 700px) {
+
+#voyages_pic_div{
+height:110px ;
+width:110px;
+margin-top:10px;
+margin-left: auto;
+    margin-right: auto;
+}  
+}
+
+
+#heading{
+font-family: 'Titillium Web', sans-serif;
+}
+
+
+#voyage_div{
+margin-left: auto;
+margin-right: auto;
+}
+
+#voyage_pic{
+border-radius:5px;
+}
+
+#destination_heading
+{
+margin-bottom:30px;
+}
+
+
+#destination_next_previous
+{
+padding-top:30px;
+}
+
+
+

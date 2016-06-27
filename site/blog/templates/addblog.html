@@ -1,0 +1,33 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% block pagetitle %} Travel Log | Add blog {% endblock %}
+{% load material_form %}
+
+
+{% block content %}
+	<div class="container">
+	<div class="card addcard">
+		<h5 class="search_text_font" style="text-align:center">Add Blog</h5>
+		<hr>
+		<form method="post" action="{% url 'blog-add' %}" enctype="multipart/form-data">
+			{% csrf_token %}
+			{% form %}
+			{% part form.images %}
+			<div class="row">
+				<div class="input-field file-field col s12" id="id_images_container">
+					<div class="btn">
+					<span>Images</span>
+						<input type="file" name="images" multiple="multiple" multiple/>
+					</div>
+					<div class="file-path-wrapper">
+						<input class="file-path" id="id_images" placeholder="Images" type="text" multiple="multiple" multiple/>
+					</div>  
+				</div>
+			</div>
+			{% endpart %}
+			{% endform %}
+					<button type="submit" name="add-blog" class="btn">Add Blog</button>
+		</form>
+	</div>
+	</div>
+{% endblock %}        
