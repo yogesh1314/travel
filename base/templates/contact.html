@@ -1,0 +1,20 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% load material_form %}
+{% block pagetitle %} Travel Log | Contact Us {% endblock %}
+{% block content %}
+
+		<div class="container">
+		<div class="card addcard">
+			
+		<h3 class="search_text_font" style="text-align:center">Contact Us</h3>
+		<hr>
+			<form method="post" action="">
+				{% csrf_token %}
+				{% form form=contactform %}
+				{% endform %}
+				<button class="btn" type="submit" name="submit">Submit</button>
+			</form>
+		</div>
+		</div>        
+{% endblock %}

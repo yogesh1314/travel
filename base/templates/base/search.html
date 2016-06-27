@@ -1,0 +1,83 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% load material_form %}
+
+{% block content %}
+<div class="container">
+	<h3>Search Results for "{{ query|upper }}" </h3>
+	{% if dest %}
+	<div class="card addcard">
+		<h5>Destinations</h5>
+		<hr>
+		{% for i in dest %}
+		<span><a href="/destination/{{ i.pk }}/">{{ i.title }}</a></span> - <span>{{ i.description }}</span><br>
+		{% endfor %}
+	</div>
+	{% endif %}
+	{% if attr %}
+	<div class="card addcard">
+		<h5>Attractions</h5>
+		<hr>
+		{% for i in attr %}
+		<span><a href="/destination/{{ i.destination.pk }}/attractions/#centre">{{ i.title }}</a></span> - 
+		<span>{{ i.description }}</span><br>
+		{% endfor %}
+	</div>
+	{% endif %}
+	{% if shop %}
+	<div class="card addcard">
+		<h5>Shopping Places</h5>
+		<hr>
+		{% for i in shop %}
+		<span><a href="/destination/{{ i.destination.pk }}/shoppingplaces/#centre">{{ i.title }}</a></span> - 
+		<span>{{ i.description }}</span>
+		<br>
+		{% endfor %}
+	</div>
+	{% endif %}
+
+	{% if things %}
+	<div class="card addcard">
+		<h5>Things To Do</h5>
+		<hr>
+		{% for i in things %}
+		<span><a href="/destination/{{ i.destination.pk }}/thingstodo/#centre">{{ i.title }}</a></span> - 
+		<span>{{ i.description }}</span><br>
+		{% endfor %}
+	</div>
+	{% endif %}
+	
+	{% if musteat %}
+	<div class="card addcard">
+		<h5>Must Eat</h5>
+		<hr>
+		{% for i in musteat %}
+		<span><a href="/destination/{{ i.destination.pk }}/musteat/#centre">{{ i.title }}</a></span> - 
+		<span>{{ i.description }}</span><br>
+		{% endfor %}
+	</div>
+	{% endif %}
+	
+	{% if mustbuy %}
+	<div class="card addcard">
+		<h5>Must Buy</h5>
+		<hr>
+		{% for i in mustbuy %}
+		<span><a href="/destination/{{ i.destination.pk }}/mustbuy/#centre">{{ i.title }}</a></span> - 
+		<span>{{ i.description }}</span><br>
+		{% endfor %}
+	</div>
+	{% endif %}
+
+	{% if blog %}
+	<div class="card addcard">
+		<h5>Blogs/Reviews</h5>
+		<hr>
+		{% for i in blog %}
+		<span><a href="/blog">{{ i.title }}</a></span> - 
+		<span>{{ i.description }}</span><br>
+		{% endfor %}
+	</div>
+	{% endif %}
+</div>
+{% endblock %}
