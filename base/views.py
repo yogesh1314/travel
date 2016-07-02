@@ -9,7 +9,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mass_mail, send_mail
 from .models import *
 from .forms import *
-from django.conf import settings
+from travel import settings
 
 @require_http_methods(['GET', 'POST'])
 def home(request):
@@ -60,3 +60,14 @@ def contact(request):
 			return render(request, 'contact_redirect.html',data)
 	data['contactform'] = form
 	return render(request, 'contact.html',data)
+def bad_request(request):
+    return render(request,'base/err400.html',)
+
+def permission_denied(request):
+    return render(request,'base/err403.html',)
+
+def page_not_found(request):
+    return render(request,'base/err404.html',)
+
+def server_error(request):
+    return render(request,'base/err500.html',)

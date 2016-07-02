@@ -29,23 +29,24 @@
 	{% endfor %}
 </div>
 <style type="text/css">
-	#map{
+	#map,#map2{
 		height: 300px;
 	}
 </style>
 {% endblock %}
 
 
-{% block scripts %}
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVOI9ZtV8oLhuGtEyDA02xZoZCGvONz2I&callback=mappymappy"async defer>
+{% block basescripts %}
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVOI9ZtV8oLhuGtEyDA02xZoZCGvONz2I&callback=mappymappy"async>
 </script>
 <script type="text/javascript">
 function mappymappy(){
-	initMap(parseInt('{{ destination.lat }}'),parseInt('{{ destination.lon }}'));
+	initMap(parseFloat('{{ destination.lat }}'),parseFloat('{{ destination.lon }}'));
 }
+var map;
 function initMap(lat,lon) {
 	var myLatLng = {lat: lat, lng: lon};
-	var map = new google.maps.Map(document.getElementById('map'), {
+	map = new google.maps.Map(document.getElementById('map'), {
 	center: myLatLng,
 	scrollwheel: false,
 	zoom: 7
