@@ -10,8 +10,39 @@
 
 {% block content %}
 <div style="text-align:center" id="destination_heading">
-	<h4 class="grey-text text-darken-4 search_text_font z-depth-2" id="heading">DESTINATIONS</h4>
+	<h4 class="blue-text text-darken-4 search_text_font z-depth-2" id="heading">DESTINATIONS</h4>
 </div>
+
+<ul id="dropdown1" class="dropdown-content black-text">
+<li><a href="{% url 'international_destination' %}" class="search_text_font black-text">ALL</a></li>
+  <li><a href="{% url 'african_destination' %}" class="search_text_font black-text">AFRICA</a></li>
+  <li><a href="{% url 'american_destination' %}" class="search_text_font black-text">AMERICA</a></li>
+  <li><a href="{% url 'asian_destination' %}" class="search_text_font black-text">ASIA</a></li>
+  <li><a href="{% url 'australian_destination' %}" class="search_text_font black-text">AUSTRALIA</a></li>
+  <li><a href="{% url 'european_destination' %}" class="search_text_font black-text">EUROPE</a></li>
+
+</ul>
+<div class="row">
+<div class="col l10 m10 s12 offset-l1 offset-m1">
+  <nav id="nav_curve">
+  <div  id="nav_curve" class="nav-wrapper pink darken-1">
+    
+    <ul id="search_narrow_ul" class="left">
+	<li><a href="{% url 'indian_destination' %}" class="search_text_font">Domestic</a></li>
+ 
+      
+     
+      <!-- Dropdown Trigger -->
+      <li><a class='dropdown-button search_text_font' data-hover="true" data-beloworigin="true" href='#' data-activates='dropdown1'>International</a></li>
+	<li><a href="{% url 'top_searched_destination' %}" class="search_text_font">Top Searched</a></li>
+    </ul>
+  </div>
+</nav>
+</div>
+</div>
+
+
+
 
 <div id="destination_container">
 
@@ -22,11 +53,11 @@
 			
 			<div id="voyages_div">
 				<div id="voyages_pic_div">
-					<a href="{% url 'destination-overview' pk=d.pk %}"><img id="voyage_pic" class="z-depth-1" height=100% width=100% src="{{ d.image.url }}" ></a>
+					<a href="{% url 'destination-overview' pk=d.pk %}"><img id="voyage_pic" class="z-depsth-1" height=100% width=100% src="{{ d.image.url }}" ></a>
 				</div>				              			
 
 				<div style="text-align:center">
-					<a href="{% url 'destination-overview' pk=d.pk %}" class="flow-text grey-text text-darken-2 search_text_font"><h5 class="align-center z-depth-2" >{{ d.title }}</h5></a>
+					<a href="{% url 'destination-overview' pk=d.pk %}" class="flow-text grey-text text-darken-2 search_text_font"><h5 class="align-center " >{{ d.title }}</h5></a>
 				</div>			   
 			</div>
 		</div>
@@ -51,3 +82,9 @@
 	</span>
 </div>
 {% endblock %}
+
+{% block script %}
+<script>
+$(".dropdown-button").dropdown();
+</script>
+{%endblock %}

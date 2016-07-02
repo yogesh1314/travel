@@ -16,7 +16,7 @@ from base.models import *
 def base(request):
 	data = {}
 	destination_list = Destination.objects.all()
-	paginator = Paginator(destination_list, 2)
+	paginator = Paginator(destination_list, 6)
 	# 2 means, 2 objects per page.
 	page = request.GET.get('page')
 	try:
@@ -26,7 +26,139 @@ def base(request):
 	except EmptyPage:
 		dest = paginator.page(paginator.num_pages)
 	data['destinations'] = dest
-	return render(request, 'desthome.html',data)	
+	return render(request, 'desthome.html',data)
+
+
+
+def top_searched(request):
+	data = {}
+	destination_list = Destination.objects.order_by('hotcount').reverse()
+	
+	paginator = Paginator(destination_list, 6)
+	# 2 means, 2 objects per page.
+	page = request.GET.get('page')
+	try:
+		dest = paginator.page(page)
+	except PageNotAnInteger:
+		dest = paginator.page(1)
+	except EmptyPage:
+		dest = paginator.page(paginator.num_pages)
+	data['destinations'] = dest
+	return render(request, 'desthome_top_searched.html',data)
+
+
+
+def indian_locations(request):
+	data = {}
+	destination_li = Destination.objects.all()
+	destination_lis = destination_li.filter(indian=True)
+	destination_list = sorted(destination_lis, key=lambda Destination: Destination.title)
+	paginator = Paginator(destination_list, 6)
+	# 2 means, 2 objects per page.
+	page = request.GET.get('page')
+	try:
+		dest = paginator.page(page)
+	except PageNotAnInteger:
+		dest = paginator.page(1)
+	except EmptyPage:
+		dest = paginator.page(paginator.num_pages)
+	data['destinations'] = dest
+	return render(request, 'desthome_indian.html',data)
+def international_locations(request):
+	data = {}
+	destination_li = Destination.objects.all()
+	destination_lis = destination_li.filter(indian=False)
+	destination_list = sorted(destination_lis, key=lambda Destination: Destination.title)
+	paginator = Paginator(destination_list, 6)
+	# 2 means, 2 objects per page.
+	page = request.GET.get('page')
+	try:
+		dest = paginator.page(page)
+	except PageNotAnInteger:
+		dest = paginator.page(1)
+	except EmptyPage:
+		dest = paginator.page(paginator.num_pages)
+	data['destinations'] = dest
+	return render(request, 'desthome_international.html',data)	
+
+def asian_locations(request):
+	data = {}
+	destination_l = Destination.objects.all()
+	
+	destination_lis= destination_l.filter(continent='ASIA')
+	destination_list = sorted(destination_lis, key=lambda Destination: Destination.title)
+	paginator = Paginator(destination_list, 6)
+	# 2 means, 2 objects per page.
+	page = request.GET.get('page')
+	try:
+		dest = paginator.page(page)
+	except PageNotAnInteger:
+		dest = paginator.page(1)
+	except EmptyPage:
+		dest = paginator.page(paginator.num_pages)
+	data['destinations'] = dest
+	return render(request, 'desthome_asian.html',data)
+
+def african_locations(request):
+	data = {}
+	destination_l = Destination.objects.all()
+	
+	destination_lis= destination_l.filter(continent='AFRICA')
+	destination_list = sorted(destination_lis, key=lambda Destination: Destination.title)
+	paginator = Paginator(destination_list, 6)
+	# 2 means, 2 objects per page.
+	page = request.GET.get('page')
+	try:
+		dest = paginator.page(page)
+	except PageNotAnInteger:
+		dest = paginator.page(1)
+	except EmptyPage:
+		dest = paginator.page(paginator.num_pages)
+	data['destinations'] = dest
+	return render(request, 'desthome_african.html',data)
+
+
+def american_locations(request):
+	data = {}
+	destination_l = Destination.objects.all()
+	
+	destination_lis= destination_l.filter(continent='AMERICA')
+	destination_list = sorted(destination_lis, key=lambda Destination: Destination.title)
+	paginator = Paginator(destination_list, 6)
+	# 2 means, 2 objects per page.
+	page = request.GET.get('page')
+	try:
+		dest = paginator.page(page)
+	except PageNotAnInteger:
+		dest = paginator.page(1)
+	except EmptyPage:
+		dest = paginator.page(paginator.num_pages)
+	data['destinations'] = dest
+	return render(request, 'desthome_american.html',data)
+
+
+def european_locations(request):
+	data = {}
+	destination_l = Destination.objects.all()
+	
+	destination_lis= destination_l.filter(continent='EUROPE')
+	destination_list = sorted(destination_lis, key=lambda Destination: Destination.title)
+	paginator = Paginator(destination_list, 6)
+	# 2 means, 2 objects per page.
+	page = request.GET.get('page')
+	try:
+		dest = paginator.page(page)
+	except PageNotAnInteger:
+		dest = paginator.page(1)
+	except EmptyPage:
+		dest = paginator.page(paginator.num_pages)
+	data['destinations'] = dest
+	return render(request, 'desthome_european.html',data)
+
+
+
+
+
 
 
 @require_http_methods(['GET'])

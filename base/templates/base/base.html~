@@ -19,30 +19,41 @@
 </head>
 
 <body>
-
+<div class="navbar-fixed">
 	<nav>
-   <div class="nav-wrapper grey darken-2 " id="header">
-    <a href="{% url 'home' %}" class="brand-logo search_text_font">&nbsp&nbsp&nbsp&nbsp&nbsp GoingPlaces</a>
+   <div class="nav-wrapper  blue accent-3" id="header">
+    <a href="{% url 'home' %}" class="brand-logo search_text_font">&nbsp&nbsp&nbsp&nbsp&nbspThe Travel Log</a>
     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down">
       <li><a href="{% url 'destination' %}" class="search_text_font" >Destinations</a></li>
-      <li><a href="{% url 'blog-home' %}" class="search_text_font" >Review your trip</a></li>
+      <li><a href="{% url 'blog-home' %}" class="search_text_font" >Blogs</a></li>
       <li><a href="{% url 'contact' %}" class="search_text_font" >Contact us</a></li>
     </ul>
     <ul class="side-nav" id="mobile-demo">
+	<li>
+	<form action="{% url 'search' %}">
+         <div class="input-field white">
+           <input name="search" id="search" type="search" class="search_text_font align-center flow-text" placeholder="SEARCH" required>
+           <label for="search"><i class="material-icons">search</i></label>
+           <i class="material-icons">close</i>
+         </div>
+       </form>
+	</li>
+
+
       <li><a href="{% url 'destination' %}" class="search_text_font" >Destinations</a></li>
-      <li><a href="{% url 'blog-home' %}" class="search_text_font" >Review your trip</a></li>
+      <li><a href="{% url 'blog-home' %}" class="search_text_font" >Blogs</a></li>
       <li><a href="{% url 'contact' %}" class="search_text_font">Contact us</a></li>
     </ul>
   </div>
 </nav>
+</div>
 
+<div class="row" id="search_box">
 
-<div class="row" id="search_box">	
-
-	<div class="col s8 m8 l6 offset-l3 offset-m2 offset-s2">
+	<div class="col s10 m8 l6 offset-l3 offset-m2 offset-s1 ">
 		<nav>
-      <div class="nav-wrapper">
+      <div class="nav-wrapper white">
         <form action="{% url 'search' %}">
          <div class="input-field white">
            <input name="search" id="search" type="search" class="search_text_font align-center flow-text" placeholder="EXPLORE , PLAN & BOOK " required>
@@ -65,7 +76,7 @@
 {% endblock %}
 
 
-<footer class="page-footer grey darken-2">
+<footer style="margin-top:60px" class="page-footer  blue accent-4">
   <div>
     <div class="row">
       <div class="col l9 s7 m7" style="text-align:center">
@@ -89,7 +100,7 @@
   </div>
   <div class="footer-copyright">
     <div class="container">
-      <h6 class="center-align">© 2016 Copyright GoingPlaces</h6>
+      <h6 class="center-align">© 2016 Copyright The Travel Log</h6>
 
     </div>
   </div>

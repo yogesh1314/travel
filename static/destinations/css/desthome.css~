@@ -54,11 +54,13 @@ border-radius:5px;
 margin-bottom:30px;
 }
 
-
-#destination_next_previous
+#nav_curve
 {
-padding-top:30px;
+border-radius:30px;
 }
-
+#search_narrow_ul
+{
+margin-left:10px;
+}
 
 

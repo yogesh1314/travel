@@ -17,7 +17,15 @@ def home(request):
 	images= HomeImages.objects.all()
 	data={"images":images, }
 	data['destination'] = Destination.objects.order_by('hotcount').reverse()[:6]
-	#print(data)
+	bloglist = []
+	blogs = Review.objects.filter(is_visible=True).order_by('created_on')[:12]
+	for i in blogs:
+		b = {}
+		b['blog'] = i
+		b['images'] = ReviewImages.objects.filter(review = i)
+		bloglist.append(b)
+	data['blogs'] = bloglist
+	print(data)
 	return render(request, 'home.html',data)
 @require_http_methods(['GET', 'POST'])
 def search(request):

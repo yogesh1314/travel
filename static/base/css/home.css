@@ -2,7 +2,7 @@
       padding: 2%;
     }
 @media only screen 
-and (min-device-width : 450px)
+and (min-device-width : 500px)
 and (max-device-width: 1600px)  
 {
  
@@ -15,12 +15,12 @@ width:200px;
 }
 
 @media only screen
-and (min-device-width : 200px) 
-and (max-width : 450px) {
+and (min-device-width : 220px) 
+and (max-width : 500px) {
 
 #voyages_pic_div{
-height:120px ;
-width:120px;
+height:100px ;
+width:100px;
 
 }  
 }

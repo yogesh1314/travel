@@ -4,6 +4,8 @@ REVIEW_CHOICES = (('5', 'Very Good'), ('4', 'Good'),('3', 'Average'),('2', 'Poor
 
 REACH_CHOICES = (('AIR', 'By Air'), ('BUS', 'By Bus'), ('TRAIN', 'By Train'))
 
+CONTINENT_CHOICES = (('ASIA', 'asian countries'),('AFRICA', 'african countries'), ('AMERICA', 'american countries'), ('AUSTRALIA', 'australian countries'), ('EUROPE', 'europe countries'))
+
 class HomeImages(models.Model):
 	image = models.ImageField(upload_to="home/")
 	def __str__(self):
@@ -27,8 +29,9 @@ class Destination(models.Model):
 	lat = models.FloatField(blank=True, null=True)
 	lon = models.FloatField(blank=True, null=True)
 	indian = models.BooleanField(default = True)
+	continent = models.CharField(max_length = 30, choices = CONTINENT_CHOICES, default = CONTINENT_CHOICES[0][0])
 	hotcount = models.IntegerField(default = 0)
-	image = models.ImageField(upload_to=destphotoname2)
+	image = models.ImageField(upload_to=destphotoname2,blank=False,null=False)
 	def __str__(self):
 		return "%s" %(self.title)
 

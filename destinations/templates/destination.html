@@ -18,19 +18,94 @@
 <div style="text-align:center" id="destination_heading">
 	<h2 class="blue-text text-darken-4 search_text_font z-depth-2" id="heading">{{destination.title}}</h2>
 </div>
+{% if destimages %}
 
-<div class="slider" id="slider_div">
-    <ul class="slides">
-	
-	{% for p in destimages %}      
+<div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 1300px; height: 450px; overflow: hidden; visibility: hidden;">
+        <!-- Loading Screen -->
+        
+        <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 1300px; height: 450px; overflow: hidden;">
+            
+	{% for p in destimages %} 
+
+            <div data-p="225.00" style="display: none;">
+                <img data-u="image" src="{{ p.image.url }}" />
+            </div>
+
+        {% endfor %}    
+            
+        
+        </div>
+        <!-- Bullet Navigator -->
+        <div data-u="navigator" class="jssorb05" style="bottom:16px;right:16px;" data-autocenter="1">
+            <!-- bullet navigator item prototype -->
+            <div data-u="prototype" style="width:16px;height:16px;"></div>
+        </div>
+        <!-- Arrow Navigator -->
+        <span data-u="arrowleft" class="jssora22l" style="top:0px;left:12px;width:40px;height:58px;" data-autocenter="2"></span>
+        <span data-u="arrowright" class="jssora22r" style="top:0px;right:12px;width:40px;height:58px;" data-autocenter="2"></span>
+    </div>
 
 
-	<li>
-        <img class="slider_images" src="{{ p.image.url }}"> <!-- random image -->
-      </li>
-	{% endfor %}
-  	</ul>
- </div>
+<style>
+        
+        /* jssor slider bullet navigator skin 05 css */
+        /*
+        .jssorb05 div           (normal)
+        .jssorb05 div:hover     (normal mouseover)
+        .jssorb05 .av           (active)
+        .jssorb05 .av:hover     (active mouseover)
+        .jssorb05 .dn           (mousedown)
+        */
+        .jssorb05 {
+            position: absolute;
+        }
+        .jssorb05 div, .jssorb05 div:hover, .jssorb05 .av {
+            position: absolute;
+            /* size of bullet elment */
+            width: 16px;
+            height: 16px;
+            background: url({% static 'destinations/images/b05.png' %}) no-repeat;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .jssorb05 div { background-position: -7px -7px; }
+        .jssorb05 div:hover, .jssorb05 .av:hover { background-position: -37px -7px; }
+        .jssorb05 .av { background-position: -67px -7px; }
+        .jssorb05 .dn, .jssorb05 .dn:hover { background-position: -97px -7px; }
+
+        /* jssor slider arrow navigator skin 22 css */
+        /*
+        .jssora22l                  (normal)
+        .jssora22r                  (normal)
+        .jssora22l:hover            (normal mouseover)
+        .jssora22r:hover            (normal mouseover)
+        .jssora22l.jssora22ldn      (mousedown)
+        .jssora22r.jssora22rdn      (mousedown)
+        */
+        .jssora22l, .jssora22r {
+            display: block;
+            position: absolute;
+            /* size of arrow element */
+            width: 40px;
+            height: 58px;
+            cursor: pointer;
+            background: url({% static 'destinations/images/a22.png' %}) center center no-repeat;
+            overflow: hidden;
+        }
+        .jssora22l { background-position: -10px -31px; }
+        .jssora22r { background-position: -70px -31px; }
+        .jssora22l:hover { background-position: -130px -31px; }
+        .jssora22r:hover { background-position: -190px -31px; }
+        .jssora22l.jssora22ldn { background-position: -250px -31px; }
+        .jssora22r.jssora22rdn { background-position: -310px -31px; }
+    </style>
+
+
+
+
+
+{% endif %}
+
 
 <!-- for mobile -->
 
@@ -47,7 +122,31 @@
 	{% if waystoreach %}
     <li>
       <div class="collapsible-header"><i class="material-icons">airplanemode_active</i><span id="mobile_heading">Way to reach</span></div>
-	<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div
+	<div class="collapsible-body">
+
+
+
+
+
+		<div class="row">
+	{% for p in waystoreach %}
+	<div class="col s12 m10 l5 offset-l1">
+		<div  class="card white z-depth-1">
+			<div id="mustsabuy_card_div" class="card-content black-text" id="center_div" style="text-align:center">
+				<span class="card-title grey-text text-darken-2" id="heading">{{p.title}}</span>
+				<div id="attrasaction_image_div_mobile">
+					<img  id="attraction_image"  src="{{p.photo.url}}" height=100% width=100%>
+				</div >
+			<p class="center-align flow-text grey-text text-darken-3" id="destination_block_text">{{p.description | safe }}<p>
+
+			</div>
+		</div>	
+	</div>
+	{% endfor %}
+</div>
+
+
+	</div>
     </li>
 	{% endif %}
 
@@ -125,8 +224,23 @@
 	</div>
 
 
+	{% if destination.lat %}
+<div id="zomato" class="card addcard">
+	<h5>Restaurants by Zomato</h5>
+	<hr>
+	<div class="widget_wrap" style="width:inherit;height:400px;display:block;">
+		<iframe src="https://www.zomato.com/widgets/res_search_widget.php?entity_type=city&lat={{destination.lat}}&lon={{destination.lon}}&theme=red&hideCitySearch=on&hideResSearch=on&widgetType=custom&sort=distance" style="position:relative;width:100%;height:100%;" border="0" frameborder="0"></iframe>
+	</div>
+</div>
+{% endif %}
+
+
 	</div>   
 	</li>
+
+	
+
+
 	{% endif %}
 
 	{% if mustbuy %}
@@ -139,7 +253,7 @@
         <div class="col s12 m10 l5 offset-l1">
           <div  class="card white z-depth-1">
             <div class="card-content black-text" id="center_div" style="text-align:center">
-              <span class="card-title grey-text text-darken-2" id="destination_block_text">{{p.title}}</span>
+              <span class="card-title grey-text text-darken-2" id="heading">{{p.title}}</span>
 		<div id="attraction_image_div_mobile">
 		<img  id="attraction_image"  src="{{p.photo.url}}" height=100% width=100%>
               </div >
@@ -534,7 +648,24 @@
 	{% if itinerary %}
     <li>
       <div class="collapsible-header"><i class="material-icons">assignment</i><span id="mobile_heading">Packages available</span></div>
-	<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>    
+	<div class="collapsible-body">
+	
+	<div class="row">	
+		{% for p in itinerary %}
+		<div class="col s12 m10 l5 offset-l1">
+          <div  class="card white z-depth-1">
+            <div class="card-content black-text" id="center_div" style="text-align:center">
+              <p class="card-title grey-text text-darken-2" id="destination_block_text">{{p.description | safe}}</p>
+		
+            	
+          </div>
+        </div>	
+	</div>
+		{% endfor %}
+	</div>
+
+
+</div>    
 	</li>
 	{% endif %}
 	<li>
@@ -654,8 +785,63 @@
 
 $(".button-collapse").sideNav();
  
-$('.slider').slider({full_width: true, height: 400,interval:3000});
+
 </script>
+
+<script type="text/javascript" src="{% static 'destinations/js/jssor.slider.mini.js' %}" ></script>
+    <!-- use jssor.slider.debug.js instead for debug -->
+    <script>
+        jQuery(document).ready(function ($) {
+            
+            var jssor_1_SlideoTransitions = [
+              [{b:5500,d:3000,o:-1,r:240,e:{r:2}}],
+              [{b:-1,d:1,o:-1,c:{x:51.0,t:-51.0}},{b:0,d:1000,o:1,c:{x:-51.0,t:51.0},e:{o:7,c:{x:7,t:7}}}],
+              [{b:-1,d:1,o:-1,sX:9,sY:9},{b:1000,d:1000,o:1,sX:-9,sY:-9,e:{sX:2,sY:2}}],
+              [{b:-1,d:1,o:-1,r:-180,sX:9,sY:9},{b:2000,d:1000,o:1,r:180,sX:-9,sY:-9,e:{r:2,sX:2,sY:2}}],
+              [{b:-1,d:1,o:-1},{b:3000,d:2000,y:180,o:1,e:{y:16}}],
+              [{b:-1,d:1,o:-1,r:-150},{b:7500,d:1600,o:1,r:150,e:{r:3}}],
+              [{b:10000,d:2000,x:-379,e:{x:7}}],
+              [{b:10000,d:2000,x:-379,e:{x:7}}],
+              [{b:-1,d:1,o:-1,r:288,sX:9,sY:9},{b:9100,d:900,x:-1400,y:-660,o:1,r:-288,sX:-9,sY:-9,e:{r:6}},{b:10000,d:1600,x:-200,o:-1,e:{x:16}}]
+            ];
+            
+            var jssor_1_options = {
+              $AutoPlay: true,
+              $SlideDuration: 800,
+              $SlideEasing: $Jease$.$OutQuint,
+              $CaptionSliderOptions: {
+                $Class: $JssorCaptionSlideo$,
+                $Transitions: jssor_1_SlideoTransitions
+              },
+              $ArrowNavigatorOptions: {
+                $Class: $JssorArrowNavigator$
+              },
+              $BulletNavigatorOptions: {
+                $Class: $JssorBulletNavigator$
+              }
+            };
+            
+            var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+            
+            //responsive code begin
+            //you can remove responsive code if you don't want the slider scales while window resizing
+            function ScaleSlider() {
+                var refSize = jssor_1_slider.$Elmt.parentNode.clientWidth;
+                if (refSize) {
+                    refSize = Math.min(refSize, 1920);
+                    jssor_1_slider.$ScaleWidth(refSize);
+                }
+                else {
+                    window.setTimeout(ScaleSlider, 30);
+                }
+            }
+            ScaleSlider();
+            $(window).bind("load", ScaleSlider);
+            $(window).bind("resize", ScaleSlider);
+            $(window).bind("orientationchange", ScaleSlider);
+            //responsive code end
+        });
+    </script>
 
 
 {% endblock %}
