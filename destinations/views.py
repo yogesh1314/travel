@@ -33,7 +33,7 @@ def base(request):
 def top_searched(request):
 	data = {}
 	destination_list = Destination.objects.order_by('hotcount').reverse()
-	
+
 	paginator = Paginator(destination_list, 6)
 	# 2 means, 2 objects per page.
 	page = request.GET.get('page')
@@ -79,13 +79,13 @@ def international_locations(request):
 	except EmptyPage:
 		dest = paginator.page(paginator.num_pages)
 	data['destinations'] = dest
-	return render(request, 'desthome_international.html',data)	
+	return render(request, 'desthome_international.html',data)
 
 def asian_locations(request):
 	data = {}
 	destination_l = Destination.objects.all()
-	
-	destination_lis= destination_l.filter(continent='ASIA')
+	destination_li = destination_l.filter(indian=False)
+	destination_lis= destination_li.filter(continent='ASIA')
 	destination_list = sorted(destination_lis, key=lambda Destination: Destination.title)
 	paginator = Paginator(destination_list, 6)
 	# 2 means, 2 objects per page.
@@ -102,7 +102,7 @@ def asian_locations(request):
 def african_locations(request):
 	data = {}
 	destination_l = Destination.objects.all()
-	
+
 	destination_lis= destination_l.filter(continent='AFRICA')
 	destination_list = sorted(destination_lis, key=lambda Destination: Destination.title)
 	paginator = Paginator(destination_list, 6)
@@ -121,7 +121,7 @@ def african_locations(request):
 def american_locations(request):
 	data = {}
 	destination_l = Destination.objects.all()
-	
+
 	destination_lis= destination_l.filter(continent='AMERICA')
 	destination_list = sorted(destination_lis, key=lambda Destination: Destination.title)
 	paginator = Paginator(destination_list, 6)
@@ -140,7 +140,7 @@ def american_locations(request):
 def european_locations(request):
 	data = {}
 	destination_l = Destination.objects.all()
-	
+
 	destination_lis= destination_l.filter(continent='EUROPE')
 	destination_list = sorted(destination_lis, key=lambda Destination: Destination.title)
 	paginator = Paginator(destination_list, 6)
@@ -158,7 +158,7 @@ def european_locations(request):
 def australian_locations(request):
 	data = {}
 	destination_l = Destination.objects.all()
-	
+
 	destination_lis= destination_l.filter(continent='AUSTRALIA')
 	destination_list = sorted(destination_lis, key=lambda Destination: Destination.title)
 	paginator = Paginator(destination_list, 6)
@@ -355,5 +355,5 @@ def destination_itinerary(request, pk):
 	data['whentovisit'] = WhenToVisit.objects.filter(destination = dest)
 	data['shoppingplaces'] = ShoppingPlaces.objects.filter(destination = dest)
 	data['itinerary'] = Itinerary.objects.filter(destination = dest)
-	
+
 	return render(request, 'destination-itinerary.html',data)
