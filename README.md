@@ -1,17 +1,14 @@
-#Travel Website#
+##Travel Website
 Search, Pagination on destination page, hotcount -- done. 
+##Map and Zomato is done:
+1. Map is visible on waystoreach page.
+2. Zomato restaurants is visible on musteat page.
+3. Both require proper latitude and longitude to be visible otherwise nothing is shown.
 
-Map and Zomato is done:
-
-Map is visible on waystoreach page.
-Zomato restaurants is visible on musteat page.
-
-Both require proper latitude and longitude to be visible otherwise nothing is shown.
-
-#Sqlite to MySQL:
+##Sqlite to MySQL:
 1. update travel/__init__.py:
-    import pymysql
-    pymysql.install_as_MySQLdb()
+    `import pymysql
+    pymysql.install_as_MySQLdb()`
 2. update travel/settings.py:
     add new Database:
     DATABASES = {
