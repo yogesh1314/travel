@@ -11,7 +11,7 @@ Search, Pagination on destination page, hotcount -- done.
     pymysql.install_as_MySQLdb()`
 2. update travel/settings.py:
     add new Database:
-    DATABASES = {
+    `DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
@@ -24,13 +24,12 @@ Search, Pagination on destination page, hotcount -- done.
             'PASSWORD' : 'PASSWORD',
             'PORT' : 3306
         }
-    } 
+    }` 
 3. add new database in MYSQL with name as in travel/settings.py 'MYSQL-DATABASE-NAME'
 4. Run this from terminal in base folder :
-    python manage.py syncdb --database slave
+    `python manage.py syncdb --database slave`
 5. Make new file in base folder as slave.py and paste this:
-    # The following code is tested on Django 1.7
-    import django
+    `import django
     import sys
     import logging
 
@@ -104,13 +103,13 @@ Search, Pagination on destination page, hotcount -- done.
                 if field.rel.through._meta.auto_created:
                     copy_m2m(m, field)
 
-        logger.info('Successfully moved data into slave')
+        logger.info('Successfully moved data into slave')`
 6. Now from terminal run:
-    python manage.py shell
+    `python manage.py shell
     from slave import run
-    run()
+    run()`
 7. After it is complete, update travel/settings.py:
-    DATABASES = {
+    `DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'MYSQL-DATABASE-NAME',
@@ -119,5 +118,5 @@ Search, Pagination on destination page, hotcount -- done.
             'PASSWORD' : 'PASSWORD',
             'PORT' : 3306
         }
-    }
+    }`
 8. Done.
