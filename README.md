@@ -1,19 +1,19 @@
-#Travel Website#
+##Travel Website
 Search, Pagination on destination page, hotcount -- done. 
+##Map and Zomato is done:
+1. Map is visible on waystoreach page.
+2. Zomato restaurants is visible on musteat page.
+3. Both require proper latitude and longitude to be visible otherwise nothing is shown.
 
-Map and Zomato is done:
-
-Map is visible on waystoreach page.
-Zomato restaurants is visible on musteat page.
-
-Both require proper latitude and longitude to be visible otherwise nothing is shown.
-
-#Sqlite to MySQL:
+##Sqlite to MySQL:
 1. update travel/__init__.py:
+    ```python
     import pymysql
     pymysql.install_as_MySQLdb()
+    ```
 2. update travel/settings.py:
     add new Database:
+    ```python
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -27,12 +27,15 @@ Both require proper latitude and longitude to be visible otherwise nothing is sh
             'PASSWORD' : 'PASSWORD',
             'PORT' : 3306
         }
-    } 
+    }
+    ```
 3. add new database in MYSQL with name as in travel/settings.py 'MYSQL-DATABASE-NAME'
 4. Run this from terminal in base folder :
+    ```python
     python manage.py syncdb --database slave
+    ```
 5. Make new file in base folder as slave.py and paste this:
-    # The following code is tested on Django 1.7
+    ```python
     import django
     import sys
     import logging
@@ -108,11 +111,15 @@ Both require proper latitude and longitude to be visible otherwise nothing is sh
                     copy_m2m(m, field)
 
         logger.info('Successfully moved data into slave')
+    ```
 6. Now from terminal run:
+    ```python
     python manage.py shell
     from slave import run
     run()
+    ```
 7. After it is complete, update travel/settings.py:
+    ```python
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
@@ -123,4 +130,5 @@ Both require proper latitude and longitude to be visible otherwise nothing is sh
             'PORT' : 3306
         }
     }
+    ```
 8. Done.
