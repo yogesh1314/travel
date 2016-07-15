@@ -1,0 +1,52 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'destinations/css/destination.css' %}" type = 	"text/css"/>
+<link rel="stylesheet" href="{% static 'blog/css/bloghome.css' %}" type = 	"text/css"/>
+<link rel="stylesheet" href="{% static 'base/css/home.css' %}" type = 	"text/css"/>
+<link href='https://fonts.googleapis.com/css?family=Titillium+Web:900' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Courgette' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:900italic' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Alegreya+Sans:900' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Chewy' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{% static 'font_awesome/css/font-awesome.min.css' %}" type ="text/css"/>
+
+{% endblock %}
+
+<title>{% block pagetitle %} Travel Log | Contact Us {% endblock %}</title>
+
+{% block content %}
+	<div style="padding-top:45px" class="container row">
+		<div class="col s2 m2 l2 offset-l5 offset-s5 offset-m5" >
+			<img class="materialboxed responsive-img" src="{% static 'base/images/logo.jpg' %}" style="border-radius:8px" height=100% width=100%></img>
+		</div>
+	</div>
+
+	<div class="container" style="text-align:center" id="blog_button">
+		<div style="margin-top:0px">
+			<h1 class="lime-text flow-text text-accent-4" id="wanderer">Your one stop shop for complete range of travel services.</h1>
+
+			<h5 class="blue-text flow-text text-darken-4" id="wanderer"><i class="fa fa-phone" aria-hidden="true"></i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp+91 9910906133</h5>
+			<h5 class="blue-text flow-text text-darken-4" id="wanderer"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspcontactus@thetravellog.in</h5>
+
+			<h5 class="blue-text flow-text text-darken-4" id="wanderer"><i class="fa fa-users" aria-hidden="true"></i>
+&nbsp&nbsp&nbspSocial :</h5>
+
+			<h5><a class="blue-text text-darken-4 flow-text text-darken-4" href="https://www.facebook.com/The-Travel-Log-1804973756388947/?fref=ts" id="wanderer">&nbsp<i class="fa fa-facebook-square" aria-hidden="true"></i></a></h5>
+
+			<h5><a class="black-text text-darken-4 flow-text text-darken-4" href="https://www.instagram.com/thetravellog.in/?hl=en" id="wanderer">&nbsp<i class="fa fa-instagram" aria-hidden="true"></i></h5>
+</a>
+
+</div>
+		<div class="row" style="text-align:center;margin-top:40px">
+
+		<a id="blog_button" class="btn blue lighten-2" href="{% url 'home' %}">Home</a>
+		</div>
+		<div class="row" style="text-align:center" >
+		<a id="blog_button" class="btn pink" href="{% url 'contact' %}">Enquiry</a>
+
+		</div>
+	</div>
+{% endblock %}

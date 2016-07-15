@@ -27,6 +27,12 @@ def home(request):
 	data['blogs'] = bloglist
 	print(data)
 	return render(request, 'home.html',data)
+
+def contactus(request):
+	data = {}
+	return render(request,'contactus.html')
+
+
 @require_http_methods(['GET', 'POST'])
 def search(request):
 	data = {}
